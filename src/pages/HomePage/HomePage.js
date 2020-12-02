@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./HomePage.module.css";
 import CreateLink from "../../components/CreateLink";
 import Links from "../../components/Links";
 
 const HomePage = () => {
+  const [updated, setUpdated] = useState(null);
   return (
     <div className={styles.container}>
-      <CreateLink />
-      <Links />
+      <CreateLink upd={setUpdated} />
+      <Links upd={updated} />
     </div>
   );
 };

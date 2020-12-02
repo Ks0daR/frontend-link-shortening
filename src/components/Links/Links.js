@@ -5,12 +5,10 @@ import { useHttp } from "../../hooks/useHttp";
 import Loader from "../Loader/Loader";
 import styles from "./Links.module.css";
 
-const Links = () => {
+const Links = ({ upd }) => {
   const [links, setLinks] = useState(null);
 
   const { request, loading } = useHttp();
-
-  console.log(links);
 
   const link = "https://backend-link.herokuapp.com/links/";
   const auth = useAuth(AuthContext);
@@ -29,7 +27,7 @@ const Links = () => {
     if (auth.jwtToken) {
       fetchData();
     }
-  }, [auth.jwtToken]);
+  }, [auth.jwtToken, upd]);
 
   return (
     <div className={styles.container}>
@@ -42,7 +40,9 @@ const Links = () => {
             </div>
             <div>
               <span className={styles.title}>Короткая ссылка:</span>
-              <span>{link.shortLink}</span>
+              <a href={link.shortLink}>
+                <span>{link.shortLink}</span>
+              </a>
             </div>
 
             <span>Клики по ссылке {link.clicks}</span>

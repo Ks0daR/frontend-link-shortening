@@ -4,12 +4,12 @@ import { useAuth } from "../../hooks/useAuth";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./CreateLink.module.css";
 
-const CreateLink = () => {
+const CreateLink = ({ upd }) => {
   const { request } = useHttp();
   const auth = useAuth(AuthContext);
 
   const [link, setLink] = useState("");
-  const [genLink, setShortLink] = useState("");
+  const [shortLink, setShortLink] = useState("");
 
   const headers = {
     "Content-Type": "application/json",
@@ -23,12 +23,19 @@ const CreateLink = () => {
     setLink(value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
     try {
       const response = await request(serverUrl, "POST", serverLink, headers);
       setShortLink(response);
+      setLink(response.shortLink);
+      upd(response);
     } catch (e) {}
+  };
+
+  const handleClean = (evt) => {
+    evt.preventDefault();
+    setShortLink("");
     setLink("");
   };
 
@@ -45,7 +52,12 @@ const CreateLink = () => {
             onChange={handleInput}
           />
         </label>
-        <button className={styles.button}>Сократить!</button>
+        <button disabled={shortLink} className={styles.button}>
+          Сократить!
+        </button>
+        <button onClick={handleClean} className={styles.button}>
+          Очистить
+        </button>
       </form>
     </div>
   );
