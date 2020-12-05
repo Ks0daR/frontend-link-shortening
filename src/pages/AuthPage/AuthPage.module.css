@@ -5,3 +5,10 @@
   background-image: url("../../img/abstract-background-1024x273.jpg");
   background-size: cover;
 }
+
+@media (max-width: 667px) {
+  .container {
+    margin-top: 0;
+    height: 100vh;
+  }
+}

@@ -8,3 +8,16 @@
   width: 100%;
   padding: 1rem;
 }
+
+.title{
+  width: 90%;
+}
+
+@media (max-width: 667px){
+  .container{
+    width: 95vw;
+  }
+  .card{
+    padding: 0.5rem;
+  }
+}
