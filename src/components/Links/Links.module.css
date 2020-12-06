@@ -5,12 +5,9 @@
 }
 
 .card {
-  width: 100%;
+  width: 70%;
   padding: 1rem;
-}
 
-.title{
-  width: 90%;
 }
 
 @media (max-width: 667px){

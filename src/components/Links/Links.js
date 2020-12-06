@@ -29,6 +29,18 @@ const Links = ({ upd }) => {
     }
   }, [auth.jwtToken, upd]);
 
+  const changeStringLength = (str) => {
+    if (str.length <= 50) {
+      return str;
+    }
+    const newString = str.slice(0, 50) + "...";
+
+    return newString;
+  };
+
+  const originalLink = (elem, newLink) =>
+    (elem.currentTarget.textContent = newLink);
+
   return (
     <div className={styles.container}>
       {links ? (
@@ -36,9 +48,9 @@ const Links = ({ upd }) => {
           <div key={link.code} className={styles.card}>
             <div>
               <span className={styles.title}>Откуда: </span>
-              <a href={link.shortLink}>
-                <span>{link.from}</span>
-              </a>
+              <span onClick={(elem) => originalLink(elem, link.from)}>
+                {changeStringLength(link.from)}
+              </span>
             </div>
             <div>
               <span className={styles.title}>Короткая ссылка: </span>
