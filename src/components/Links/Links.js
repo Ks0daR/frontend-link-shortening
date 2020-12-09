@@ -8,7 +8,7 @@ import styles from "./Links.module.css";
 const Links = ({ upd }) => {
   const [links, setLinks] = useState(null);
 
-  const { request, loading } = useHttp();
+  const { request, loading, error } = useHttp();
 
   const link = "https://backend-link.herokuapp.com/links/";
   const auth = useAuth(AuthContext);
@@ -28,6 +28,8 @@ const Links = ({ upd }) => {
       fetchData();
     }
   }, [auth.jwtToken, upd]);
+
+  console.log(typeof links);
 
   return (
     <div className={styles.container}>
