@@ -22,3 +22,9 @@
 .navItem:hover {
   color: yellow;
 }
+
+@media (max-width: 667px) {
+  .navigation {
+    display: none;
+  }
+}

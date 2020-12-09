@@ -29,7 +29,18 @@ const Links = ({ upd }) => {
     }
   }, [auth.jwtToken, upd]);
 
-  console.log(typeof links);
+  const changeStringLength = (str) => {
+    if (str.length <= 50) {
+      return str;
+    }
+    const newString = str.slice(0, 50) + "...";
+
+    return newString;
+  };
+
+  const originalLink = (elem, newLink) =>
+    (elem.currentTarget.textContent = newLink);
+
 
   return (
     <div className={styles.container}>
@@ -37,17 +48,19 @@ const Links = ({ upd }) => {
         links.map((link) => (
           <div key={link.code} className={styles.card}>
             <div>
-              <span className={styles.title}>Откуда:</span>
-              <span>{link.from}</span>
+              <span className={styles.title}>Откуда: </span>
+              <span onClick={(elem) => originalLink(elem, link.from)}>
+                {changeStringLength(link.from)}
+              </span>
             </div>
             <div>
-              <span className={styles.title}>Короткая ссылка:</span>
+              <span className={styles.title}>Короткая ссылка: </span>
               <a href={link.shortLink}>
                 <span>{link.shortLink}</span>
               </a>
             </div>
 
-            <span>Клики по ссылке {link.clicks}</span>
+            <span>Клики по ссылке: {link.clicks}</span>
           </div>
         ))
       ) : (

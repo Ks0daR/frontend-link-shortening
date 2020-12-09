@@ -5,6 +5,16 @@
 }
 
 .card {
-  width: 100%;
+  width: 70%;
   padding: 1rem;
+
+}
+
+@media (max-width: 667px){
+  .container{
+    width: 95vw;
+  }
+  .card{
+    padding: 0.5rem;
+  }
 }

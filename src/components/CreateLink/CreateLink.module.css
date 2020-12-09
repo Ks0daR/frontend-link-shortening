@@ -59,3 +59,32 @@
   margin-right: 0;
   background-color: rgb(231, 149, 73);
 }
+
+@media (max-width: 667px) {
+  .container {
+    margin: 0;
+    height: 100vh;
+  }
+  .title {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-style: 1rem;
+  }
+  .input {
+    width: 80%;
+    height: 2rem;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .input::placeholder {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .button{
+    height: 2rem;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
