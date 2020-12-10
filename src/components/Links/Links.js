@@ -2,13 +2,24 @@ import React, { useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useAuth } from "../../hooks/useAuth";
 import { useHttp } from "../../hooks/useHttp";
+import { useMessage } from "../../hooks/useMessage";
 import Loader from "../Loader/Loader";
 import styles from "./Links.module.css";
 
 const Links = ({ upd }) => {
   const [links, setLinks] = useState(null);
 
-  const { request, loading, error } = useHttp();
+  const { request, error } = useHttp();
+
+  const message = useMessage();
+
+  useEffect(
+    () => {
+      message(error);
+    },
+    message,
+    error
+  );
 
   const link = "https://backend-link.herokuapp.com/links/";
   const auth = useAuth(AuthContext);
@@ -20,7 +31,6 @@ const Links = ({ upd }) => {
 
   useEffect(() => {
     async function fetchData() {
-      console.log(headers);
       const response = await request(link, "GET", null, headers);
       setLinks(response);
     }
@@ -40,7 +50,6 @@ const Links = ({ upd }) => {
 
   const originalLink = (elem, newLink) =>
     (elem.currentTarget.textContent = newLink);
-
 
   return (
     <div className={styles.container}>

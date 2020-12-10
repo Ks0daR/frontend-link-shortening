@@ -1,15 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./AuthForm.module.css";
 import { useHttp } from "../../hooks/useHttp";
 import Loader from "../Loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
+import { useMessage } from "../../hooks/useMessage";
 
 const AuthFrom = () => {
   const auth = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { loading, request } = useHttp();
+  const { loading, request, error } = useHttp();
+
+  const message = useMessage();
+
+  useEffect(() => {
+    message(error);
+  }, [message, error]);
 
   const headers = { "Content-Type": "application/json" };
 
@@ -22,7 +29,12 @@ const AuthFrom = () => {
     const credentials = JSON.stringify({ email, password });
 
     try {
-      await request("https://backend-link.herokuapp.com/auth/register", "POST", credentials, headers);
+      await request(
+        "https://backend-link.herokuapp.com/auth/register",
+        "POST",
+        credentials,
+        headers
+      );
     } catch (e) {}
   };
   const logInHandler = async () => {

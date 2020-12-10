@@ -7,7 +7,9 @@ export const useRoutes = (isAuthorized) => {
   if (isAuthorized) {
     return (
       <Switch>
-        <Route path="/home" component={HomePage} />
+        <Route path="/home">
+          <HomePage />
+        </Route>
         <Redirect to="/home" />
       </Switch>
     );
@@ -15,7 +17,9 @@ export const useRoutes = (isAuthorized) => {
 
   return (
     <Switch>
-      <Route path="/auth" component={AuthPage} />
+      <Route path="/auth">
+        <AuthPage />
+      </Route>
       <Redirect to="/auth" />
     </Switch>
   );
