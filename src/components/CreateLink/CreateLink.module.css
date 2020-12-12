@@ -63,7 +63,7 @@
 @media (max-width: 667px) {
   .container {
     margin: 0;
-    height: 100vh;
+    height: 60vh;
   }
   .title {
     padding-top: 20px;

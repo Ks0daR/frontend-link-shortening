@@ -1,20 +1,33 @@
 .container {
-  width: 80vw;
+  width: 95vw;
   height: 80vh;
   margin: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card {
-  width: 70%;
+  width: 50%;
   padding: 1rem;
-
+  -webkit-box-shadow: 8px 8px 15px -4px rgba(0, 0, 0, 0.86);
+  box-shadow: 8px 8px 15px -4px rgba(0, 0, 0, 0.86);
+  margin-top: 15px;
 }
 
-@media (max-width: 667px){
-  .container{
-    width: 95vw;
+.elementFrom {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 667px) {
+  .container {
+    width: 90vw;
+    display: block;
   }
-  .card{
+  .card {
+    width: 100%;
     padding: 0.5rem;
+  }
+  .elementFrom {
+    width: 80%;
   }
 }

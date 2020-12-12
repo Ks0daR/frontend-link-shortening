@@ -13,13 +13,9 @@ const Links = ({ upd }) => {
 
   const message = useMessage();
 
-  useEffect(
-    () => {
-      message(error);
-    },
-    message,
-    error
-  );
+  useEffect(() => {
+    message(error);
+  }, [message, error]);
 
   const link = "https://backend-link.herokuapp.com/links/";
   const auth = useAuth(AuthContext);
@@ -56,7 +52,7 @@ const Links = ({ upd }) => {
       {links ? (
         links.map((link) => (
           <div key={link.code} className={styles.card}>
-            <div>
+            <div className={styles.elementFrom}>
               <span className={styles.title}>Откуда: </span>
               <span onClick={(elem) => originalLink(elem, link.from)}>
                 {changeStringLength(link.from)}
