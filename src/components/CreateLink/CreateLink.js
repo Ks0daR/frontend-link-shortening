@@ -3,6 +3,7 @@ import { useHttp } from "../../hooks/useHttp";
 import { useAuth } from "../../hooks/useAuth";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./CreateLink.module.css";
+import { ALL_LINKS_ENDPOINT, SERVER_LINK } from "../../helpers/vars";
 
 const CreateLink = ({ upd }) => {
   const { request } = useHttp();
@@ -16,7 +17,6 @@ const CreateLink = ({ upd }) => {
     Authorization: `Bearer ${auth.jwtToken}`,
   };
 
-  const serverUrl = "https://backend-link.herokuapp.com/links/";
   const serverLink = JSON.stringify({ from: link });
 
   const handleInput = ({ target: { value } }) => {
@@ -26,7 +26,12 @@ const CreateLink = ({ upd }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      const response = await request(serverUrl, "POST", serverLink, headers);
+      const response = await request(
+        SERVER_LINK + ALL_LINKS_ENDPOINT,
+        "POST",
+        serverLink,
+        headers
+      );
       setShortLink(response);
       setLink(response.shortLink);
       upd(response);

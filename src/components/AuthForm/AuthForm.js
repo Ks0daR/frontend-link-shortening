@@ -4,6 +4,7 @@ import { useHttp } from "../../hooks/useHttp";
 import Loader from "../Loader/Loader";
 import { AuthContext } from "../../context/AuthContext";
 import { useMessage } from "../../hooks/useMessage";
+import { REGISTRATION_ENDPOINT, SERVER_LINK } from "../../helpers/vars";
 
 const AuthFrom = () => {
   const auth = useContext(AuthContext);
@@ -30,7 +31,7 @@ const AuthFrom = () => {
 
     try {
       await request(
-        "https://backend-link.herokuapp.com/auth/register",
+        SERVER_LINK + REGISTRATION_ENDPOINT,
         "POST",
         credentials,
         headers

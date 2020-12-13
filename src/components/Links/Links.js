@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { ALL_LINKS_ENDPOINT, SERVER_LINK } from "../../helpers/vars";
 import { useAuth } from "../../hooks/useAuth";
 import { useHttp } from "../../hooks/useHttp";
 import { useMessage } from "../../hooks/useMessage";
@@ -17,7 +18,6 @@ const Links = ({ upd }) => {
     message(error);
   }, [message, error]);
 
-  const link = "https://backend-link.herokuapp.com/links/";
   const auth = useAuth(AuthContext);
 
   const headers = {
@@ -27,7 +27,12 @@ const Links = ({ upd }) => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await request(link, "GET", null, headers);
+      const response = await request(
+        SERVER_LINK + ALL_LINKS_ENDPOINT,
+        "GET",
+        null,
+        headers
+      );
       setLinks(response);
     }
     if (auth.jwtToken) {

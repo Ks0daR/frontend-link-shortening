@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { toTop } from "../../helpers/scrollToTop";
 import styles from "./NavBar.module.css";
 
 export const NavBar = () => {
@@ -14,7 +15,7 @@ export const NavBar = () => {
     return (
       <nav className={styles.navigation}>
         <ul>
-          <NavLink className={styles.navItem} to="/home">
+          <NavLink className={styles.navItem} to="/home" onClick={toTop}>
             Ссылки
           </NavLink>
           <NavLink className={styles.navItem} onClick={handleClick} to="/auth">
